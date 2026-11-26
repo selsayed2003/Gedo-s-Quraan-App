@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>القرآن الكريم</title>
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preload" href="fonts/sch-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HOME -->
+  <section id="home" class="screen">
+    <h1 class="app-title">القرآن الكريم</h1>
+    <div class="home-buttons">
+      <button class="big-btn primary" data-go="#/search">
+        <span class="ico" aria-hidden="true">🎤</span><span>ابحث بالصوت</span>
+      </button>
+      <button class="big-btn" id="continue-btn" hidden>
+        <span class="ico" aria-hidden="true">📖</span><span id="continue-label">أكمل القراءة</span>
+      </button>
+      <button class="big-btn" data-go="#/surahs">
+        <span class="ico" aria-hidden="true">📜</span><span>فهرس السور</span>
+      </button>
+      <button class="big-btn" data-go="#/settings">
+        <span class="ico" aria-hidden="true">⚙️</span><span>الإعدادات</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section id="search" class="screen" hidden>
+    <header class="topbar">
+      <button class="top-btn" data-go="#/" aria-label="الرئيسية">🏠</button>
+      <h2>البحث</h2>
+      <span class="top-spacer"></span>
+    </header>
+    <div class="search-body">
+      <button id="mic-btn" class="mic" aria-label="اضغط وتكلم">🎤</button>
+      <p id="search-status" class="status">اضغط على الميكروفون وتكلم</p>
+      <p class="hint">قل «سورة» ثم اسم السورة<br>أو اقرأ جزءًا من الآية</p>
+      <p id="heard" class="heard"></p>
+      <form id="type-form" class="type-form">
+        <input id="type-input" type="search" placeholder="أو اكتب هنا" autocomplete="off" enterkeyhint="search">
+        <button type="submit" class="big-btn primary small">بحث</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SURAH LIST -->
+  <section id="surahs" class="screen" hidden>
+    <header class="topbar">
+      <button class="top-btn" data-go="#/" aria-label="الرئيسية">🏠</button>
+      <h2>فهرس السور</h2>
+      <button class="top-btn" data-go="#/search" aria-label="بحث">🎤</button>
+    </header>
+    <ol id="surah-list" class="surah-list"></ol>
+  </section>
+
+  <!-- SETTINGS -->
+  <section id="settings" class="screen" hidden>
+    <header class="topbar">
+      <button class="top-btn" data-go="#/" aria-label="الرئيسية">🏠</button>
+      <h2>الإعدادات</h2>
+      <span class="top-spacer"></span>
+    </header>
+    <div class="settings-body">
+      <h3>حجم الخط</h3>
+      <div class="size-row">
+        <button class="size-btn" id="size-down" aria-label="تصغير الخط">أ−</button>
+        <button class="size-btn" id="size-up" aria-label="تكبير الخط">أ+</button>
+      </div>
+      <p class="quran size-sample">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</p>
+
+      <h3>لون الشاشة</h3>
+      <div class="theme-row">
+        <button class="theme-btn" data-theme-set="dark"><span>🌙</span> ليلي<br><small>خلفية سوداء</small></button>
+        <button class="theme-btn" data-theme-set="light"><span>☀️</span> نهاري<br><small>خلفية فاتحة</small></button>
+      </div>
+
+      <h3>القارئ</h3>
+      <div id="reciter-list" class="reciter-list"></div>
+    </div>
+  </section>
+
+  <!-- READER -->
+  <section id="reader" class="screen" hidden>
+    <header class="topbar">
+      <button class="top-btn" data-go="#/" aria-label="الرئيسية">🏠</button>
+      <h2 id="reader-title">سورة</h2>
+      <button class="top-btn" data-go="#/search" aria-label="بحث">🎤</button>
+    </header>
+    <div id="result-bar" class="result-bar" hidden>
+      <span id="result-label"></span>
+      <button id="result-next" class="result-next">التالي ◀</button>
+      <button id="result-close" class="result-close" aria-label="إغلاق">✕</button>
+    </div>
+    <div id="msg" class="msg" hidden></div>
+    <main id="page" class="page">
+      <div id="bismillah" class="quran bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+      <div id="text" class="quran text"></div>
+      <button id="next-surah" class="big-btn next-surah" hidden></button>
+    </main>
+    <nav class="player">
+      <button id="prev-btn" class="ctl" aria-label="الآية السابقة"><span>▶▶</span><small>السابقة</small></button>
+      <button id="play-btn" class="ctl play" aria-label="تشغيل"><span id="play-ico">▶</span><small id="play-label">تشغيل</small></button>
+      <button id="next-btn" class="ctl" aria-label="الآية التالية"><span>◀◀</span><small>التالية</small></button>
+    </nav>
+  </section>
+
+  <audio id="audio" preload="none"></audio>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
