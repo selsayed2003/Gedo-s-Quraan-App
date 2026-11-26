@@ -337,7 +337,7 @@ function setMediaSession(s) {
   if (!("mediaSession" in navigator)) return;
   const rec = RECITERS.find((r) => r.id === settings.reciter);
   navigator.mediaSession.metadata = new MediaMetadata({
-    title: "سورة " + SURAHS[s - 1].name, artist: rec ? rec.name : "", album: "القرآن الكريم",
+    title: "سورة " + SURAHS[s - 1].name, artist: rec ? rec.name : "", album: "قرآن جدو عبد الهادي",
     artwork: [{ src: "icons/icon-512.png", sizes: "512x512", type: "image/png" }],
   });
   navigator.mediaSession.setActionHandler("play", () => audio.play());
